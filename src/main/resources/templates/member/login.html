@@ -17,11 +17,11 @@
     <form action="/member/signin" method="post" class="memberForm">
 
         <h1>로그인(SIGNIN)</h1>
-        <h3 id="result-pwd" th:if="${isMatch == false}">입력하신 정보가 맞지 않습니다.</h3>
+
         <div class="loginFail" th:if="${isMatch == null}"></div>
         <label text=${member.email})><b>Email</b></label>
         <input type="email" id="email" placeholder="Enter Email" name="email" required><br>
-
+        <h3 id="result-pwd" th:if="${isMatch == false}">입력하신 정보가 맞지 않습니다.</h3>
         <label text=${member.pwd}><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="pwd" required> <br>
 
