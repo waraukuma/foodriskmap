@@ -47,14 +47,16 @@
         if (result.code == 200) {
             //1. 가입 불가 경고창
             //2. 가입완료 버튼을 비활성화시킨다.
+            joinBtn.disabled = true;
             alert(result.msg);
             // 3.email 입력값을 삭제한다.
             email.value = '';
-            joinBtn.disabled = true;
+
 
         } else {
             // 가입 가능
             alert(result.msg);
+            joinBtn.disabled = false;
         }
     }
 
