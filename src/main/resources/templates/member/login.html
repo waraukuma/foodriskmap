@@ -17,14 +17,8 @@
     <form action="/member/signin" method="post" class="memberForm">
 
         <h1>로그인(SIGNIN)</h1>
-
-        <b>
-            <!--            <p id="result-email" aria-hidden="true" th:if="${isMatch} == false" th:text='입력하신 정보가 일치하지 않습니다.'></p>-->
-
-            <!--            ></p>-->
-
-        </b>
-
+        <h3 id="result-pwd" th:if="${isMatch == false}">입력하신 정보가 맞지 않습니다.</h3>
+        <div class="loginFail" th:if="${isMatch == null}"></div>
         <label text=${member.email})><b>Email</b></label>
         <input type="email" id="email" placeholder="Enter Email" name="email" required><br>
 
@@ -33,15 +27,14 @@
 
         <button type="submit" class="btn" onclick="btn">로그인(SIGNIN)</button>
         <button type="reset" class="canceal" onclick="location.href='/board'">Close</button>
+
         <div class="links">
             <a href="/member/signup" class="left-link">회원가입(JOIN)</a>
             <a href="/member/signout" class="right-link">로그아웃(SIGNOUT)</a>
         </div>
 
-
     </form>
 </div>
-
 
 </body>
 

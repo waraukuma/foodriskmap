@@ -94,20 +94,23 @@ public class MemberController {
     @PostMapping("/member/signin")
     public String signInPost(@ModelAttribute Member member, Model model) {
         Member dbMember = memberRepository.findByEmail(member.getEmail());
-        String dbPwd = dbMember.getPwd();
+        String dbPwd = dbMember != null ? dbMember.getPwd() : null;
         String memberPwd = member.getPwd();
+        boolean isMatch = false;
         //isMatch 비번일치, 기회원확인
-        boolean isMatch = passwordEncoder.matches(memberPwd, dbPwd);
-        log.info("isMatch : {}", isMatch);
+        if (dbPwd != null) {
+            isMatch = passwordEncoder.matches(memberPwd, dbPwd);
+        }
+//          log.info("isMatch : {}", isMatch);
         if (isMatch) {
             session.setAttribute("member_info", dbMember);
             return "redirect:/board"; // 게시판 페이지 url
-            //
-        }
-        log.info("isMatch : {}", isMatch);
-        model.addAttribute("isMatch", isMatch);
-        return "member/login"; //로그인 페이지 html
+        } else
+//      log.info("isMatch : {}", isMatch);
+            model.addAttribute("isMatch", isMatch);
+        return "member/login"; //로그인 페이지 html 모델은 redirect를 사용하지 않는다
     }
+
 
     //로그아웃
     @GetMapping("/member/signout")
